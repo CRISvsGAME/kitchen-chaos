@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 183652442}
   - component: {fileID: 183652441}
   m_Layer: 0
-  m_Name: Global Volume
+  m_Name: GlobalVolume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 520885721}
   - component: {fileID: 520885720}
   m_Layer: 0
-  m_Name: Directional Light
+  m_Name: DirectionalLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -308,7 +308,7 @@ GameObject:
   - component: {fileID: 1027670250}
   - component: {fileID: 1027670249}
   m_Layer: 0
-  m_Name: Ground Floor
+  m_Name: GroundFloor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -421,7 +421,7 @@ GameObject:
   - component: {fileID: 1549048882}
   - component: {fileID: 1549048881}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: MainCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
