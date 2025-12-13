@@ -34,5 +34,10 @@ public class Player : MonoBehaviour
         Vector3 moveVector = new(inputVector.x, 0f, inputVector.y);
         Vector3 moveDelta = _moveSpeed * Time.deltaTime * moveVector;
         transform.position += moveDelta;
+
+        if (moveVector.sqrMagnitude > 0f)
+        {
+            transform.forward = Vector3.Slerp(transform.forward, moveVector, Time.deltaTime * 10f);
+        }
     }
 }
