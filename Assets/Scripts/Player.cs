@@ -4,6 +4,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField]
     private float _moveSpeed = 10f;
+    private bool _isWalking = false;
 
     private PlayerInputActions _playerInputActions;
 
@@ -38,6 +39,16 @@ public class Player : MonoBehaviour
         if (moveVector.sqrMagnitude > 0f)
         {
             transform.forward = Vector3.Slerp(transform.forward, moveVector, Time.deltaTime * 10f);
+            _isWalking = true;
         }
+        else
+        {
+            _isWalking = false;
+        }
+    }
+
+    public bool IsWalking()
+    {
+        return _isWalking;
     }
 }
