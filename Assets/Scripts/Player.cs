@@ -10,10 +10,28 @@ public class Player : MonoBehaviour
     [SerializeField] private GameInput _gameInput;
     [SerializeField] private float _movementSpeed = 10f;
     [SerializeField] private float _rotationSpeed = 10f;
+    [SerializeField] private LayerMask _counterLayerMask;
 
     private bool _isWalking;
 
     private void Update()
+    {
+        HandleMovement();
+        HandleInteraction();
+    }
+
+    private void HandleInteraction()
+    {
+        float interactionDistance = 2f;
+        bool hit = Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, interactionDistance, _counterLayerMask);
+
+        if (hit && hitInfo.transform.TryGetComponent(out ClearCounter clearCounter))
+        {
+            clearCounter.Interact();
+        }
+    }
+
+    private void HandleMovement()
     {
         Vector2 input = _gameInput.GetMovementVectorNormalized();
 
