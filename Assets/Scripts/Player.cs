@@ -14,10 +14,24 @@ public class Player : MonoBehaviour
 
     private bool _isWalking;
 
+    public void Start()
+    {
+        _gameInput.OnInteractAction += GameInput_OnInteractAction;
+    }
+
+    private void GameInput_OnInteractAction(object sender, System.EventArgs e)
+    {
+        HandleInteraction();
+    }
+
     private void Update()
     {
         HandleMovement();
-        HandleInteraction();
+    }
+
+    private void OnDestroy()
+    {
+        _gameInput.OnInteractAction -= GameInput_OnInteractAction;
     }
 
     private void HandleInteraction()
