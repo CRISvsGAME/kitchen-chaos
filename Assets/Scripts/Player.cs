@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask _counterLayerMask;
 
     private bool _isWalking;
+    private IInteractable _currentInteractable;
 
     public void Start()
     {
@@ -21,12 +22,13 @@ public class Player : MonoBehaviour
 
     private void GameInput_OnInteractAction(object sender, System.EventArgs e)
     {
-        HandleInteraction();
+        _currentInteractable?.Interact();
     }
 
     private void Update()
     {
         HandleMovement();
+        HandleInteraction();
     }
 
     private void OnDestroy()
@@ -39,9 +41,13 @@ public class Player : MonoBehaviour
         float interactionDistance = 2f;
         bool hit = Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, interactionDistance, _counterLayerMask);
 
-        if (hit && hitInfo.transform.TryGetComponent(out ClearCounter clearCounter))
+        IInteractable interactable = hit ? hitInfo.transform.GetComponent<IInteractable>() : null;
+
+        if (_currentInteractable != interactable)
         {
-            clearCounter.Interact();
+            _currentInteractable?.OnLookExit();
+            _currentInteractable = interactable;
+            _currentInteractable?.OnLookEnter();
         }
     }
 
@@ -64,14 +70,7 @@ public class Player : MonoBehaviour
 
         for (int i = 0; i < MAX_ITERATIONS; i++)
         {
-            bool hit = Physics.CapsuleCast(
-                capsuleBot,
-                capsuleTop,
-                PLAYER_RADIUS,
-                direction,
-                out RaycastHit hitInfo,
-                distance
-            );
+            bool hit = Physics.CapsuleCast(capsuleBot, capsuleTop, PLAYER_RADIUS, direction, out RaycastHit hitInfo, distance);
 
             if (!hit)
             {
