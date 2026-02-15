@@ -14,7 +14,7 @@ public class ClearCounter : MonoBehaviour, IInteractable
     private Coroutine _fadeCoroutine;
     private float _fadeTimer;
 
-    [SerializeField] private Transform tomatoPrefab;
+    [SerializeField] private SOKitchenObject kitchenObjectData;
     [SerializeField] private Transform kitchenObjectSpawnPoint;
 
     private void Awake()
@@ -28,9 +28,9 @@ public class ClearCounter : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        Debug.Log($"Interact with {gameObject.name}");
-        Transform tomatoTransform = Instantiate(tomatoPrefab, kitchenObjectSpawnPoint);
-        tomatoTransform.localPosition = Vector3.zero;
+        Debug.Log($"Spawned {kitchenObjectData.objectName} on {gameObject.name}");
+        Transform kitchenObjectTransform = Instantiate(kitchenObjectData.prefab, kitchenObjectSpawnPoint);
+        kitchenObjectTransform.localPosition = Vector3.zero;
     }
 
     public void OnLookEnter()

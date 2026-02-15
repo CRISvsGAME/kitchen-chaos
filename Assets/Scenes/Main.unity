@@ -351,6 +351,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ClearCounter_02
       objectReference: {fileID: 0}
+    - target: {fileID: 4623401907375388403, guid: 1fbede95e5883fc46a4e544633ea2072, type: 3}
+      propertyPath: tomatoPrefab
+      value: 
+      objectReference: {fileID: 8159005377378384753, guid: 4f1c27342858cc540981888730542e4c, type: 3}
+    - target: {fileID: 4623401907375388403, guid: 1fbede95e5883fc46a4e544633ea2072, type: 3}
+      propertyPath: kitchenObjectData
+      value: 
+      objectReference: {fileID: 11400000, guid: 388506048ddea644c982bb3bea10f9b7, type: 2}
     - target: {fileID: 7316837192740450298, guid: 1fbede95e5883fc46a4e544633ea2072, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.5
@@ -772,6 +780,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ClearCounter_04
       objectReference: {fileID: 0}
+    - target: {fileID: 4623401907375388403, guid: 1fbede95e5883fc46a4e544633ea2072, type: 3}
+      propertyPath: kitchenObjectData
+      value: 
+      objectReference: {fileID: 11400000, guid: 388506048ddea644c982bb3bea10f9b7, type: 2}
     - target: {fileID: 7316837192740450298, guid: 1fbede95e5883fc46a4e544633ea2072, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.5
@@ -890,63 +902,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5feb9ae2ded95d4a99fba2a82e32f8c, type: 3}
---- !u!1001 &6152355602854891129
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 8001844073968474354, guid: 4f1c27342858cc540981888730542e4c, type: 3}
-      propertyPath: m_Name
-      value: Cheese
-      objectReference: {fileID: 0}
-    - target: {fileID: 8159005377378384753, guid: 4f1c27342858cc540981888730542e4c, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8159005377378384753, guid: 4f1c27342858cc540981888730542e4c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8159005377378384753, guid: 4f1c27342858cc540981888730542e4c, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8159005377378384753, guid: 4f1c27342858cc540981888730542e4c, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8159005377378384753, guid: 4f1c27342858cc540981888730542e4c, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8159005377378384753, guid: 4f1c27342858cc540981888730542e4c, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8159005377378384753, guid: 4f1c27342858cc540981888730542e4c, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8159005377378384753, guid: 4f1c27342858cc540981888730542e4c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8159005377378384753, guid: 4f1c27342858cc540981888730542e4c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8159005377378384753, guid: 4f1c27342858cc540981888730542e4c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4f1c27342858cc540981888730542e4c, type: 3}
 --- !u!1001 &6824620773520651695
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1019,4 +974,3 @@ SceneRoots:
   - {fileID: 1734954864}
   - {fileID: 1885119969}
   - {fileID: 1510946028}
-  - {fileID: 6152355602854891129}
