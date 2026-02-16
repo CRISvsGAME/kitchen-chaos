@@ -14,8 +14,10 @@ public class ClearCounter : MonoBehaviour, IInteractable
     private Coroutine _fadeCoroutine;
     private float _fadeTimer;
 
-    [SerializeField] private SOKitchenObject kitchenObjectData;
-    [SerializeField] private Transform kitchenObjectSpawnPoint;
+    [SerializeField] private SOKitchenObject _kitchenObjectData;
+    [SerializeField] private Transform _kitchenObjectSpawnPoint;
+
+    private KitchenObject _kitchenObject;
 
     private void Awake()
     {
@@ -28,9 +30,17 @@ public class ClearCounter : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        Debug.Log($"Spawned {kitchenObjectData.objectName} on {gameObject.name}");
-        Transform kitchenObjectTransform = Instantiate(kitchenObjectData.prefab, kitchenObjectSpawnPoint);
-        kitchenObjectTransform.localPosition = Vector3.zero;
+        if (_kitchenObject == null)
+        {
+            Transform kitchenObjectTransform = Instantiate(_kitchenObjectData.prefab, _kitchenObjectSpawnPoint);
+            kitchenObjectTransform.localPosition = Vector3.zero;
+            _kitchenObject = kitchenObjectTransform.GetComponent<KitchenObject>();
+            _kitchenObject.SetClearCounter(this);
+        }
+        else
+        {
+            Debug.Log(_kitchenObject.GetClearCounter().name);
+        }
     }
 
     public void OnLookEnter()
