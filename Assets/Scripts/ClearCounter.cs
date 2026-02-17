@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class ClearCounter : MonoBehaviour, IInteractable
+public class ClearCounter : MonoBehaviour, IInteractable, IKitchenObjectParent
 {
     private Renderer _renderer;
     private Material _material;
@@ -15,8 +15,7 @@ public class ClearCounter : MonoBehaviour, IInteractable
     private float _fadeTimer;
 
     [SerializeField] private SOKitchenObject _kitchenObjectData;
-    [SerializeField] private Transform _kitchenObjectSpawnPoint;
-
+    [SerializeField] private Transform _kitchenObjectFollowTransform;
     private KitchenObject _kitchenObject;
 
     private void Awake()
@@ -28,18 +27,64 @@ public class ClearCounter : MonoBehaviour, IInteractable
         _glowEmission = _glowColor * _glowIntensity;
     }
 
-    public void Interact()
+    // #########################################################################
+    // IKitchenObjectParent Implementation
+    // #########################################################################
+
+    public Transform GetKitchenObjectFollowTransform()
+    {
+        return _kitchenObjectFollowTransform;
+    }
+
+    public void SetKitchenObject(KitchenObject kitchenObject)
+    {
+        _kitchenObject = kitchenObject;
+    }
+
+    public KitchenObject GetKitchenObject()
+    {
+        return _kitchenObject;
+    }
+
+    public void ClearKitchenObject()
+    {
+        _kitchenObject = null;
+    }
+
+    public bool HasKitchenObject()
+    {
+        return _kitchenObject != null;
+    }
+
+    // #########################################################################
+    // IInteractable Implementation
+    // #########################################################################
+
+    public void Interact(Player player)
     {
         if (_kitchenObject == null)
         {
-            Transform kitchenObjectTransform = Instantiate(_kitchenObjectData.prefab, _kitchenObjectSpawnPoint);
-            kitchenObjectTransform.localPosition = Vector3.zero;
-            _kitchenObject = kitchenObjectTransform.GetComponent<KitchenObject>();
-            _kitchenObject.SetClearCounter(this);
+            if (player.HasKitchenObject())
+            {
+                _kitchenObject = player.GetKitchenObject();
+                _kitchenObject.SetKitchenObjectParent(this);
+                player.ClearKitchenObject();
+            }
+            else
+            {
+                Transform kitchenObjectTransform = Instantiate(_kitchenObjectData.prefab, _kitchenObjectFollowTransform);
+                _kitchenObject = kitchenObjectTransform.GetComponent<KitchenObject>();
+                _kitchenObject.SetKitchenObjectParent(this);
+            }
         }
         else
         {
-            Debug.Log(_kitchenObject.GetClearCounter().name);
+            if (!player.HasKitchenObject())
+            {
+                player.SetKitchenObject(_kitchenObject);
+                _kitchenObject.SetKitchenObjectParent(player);
+                _kitchenObject = null;
+            }
         }
     }
 
@@ -52,6 +97,10 @@ public class ClearCounter : MonoBehaviour, IInteractable
     {
         Fade(0f);
     }
+
+    // #########################################################################
+    // Fade Emission
+    // #########################################################################
 
     private void Fade(float target)
     {

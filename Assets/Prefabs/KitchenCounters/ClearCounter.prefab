@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7361393866569850628}
   m_Layer: 6
-  m_Name: KitchenObjectSpawnPoint
+  m_Name: KitchenObjectFollowTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -103,7 +103,7 @@ MonoBehaviour:
   _glowColor: {r: 1, g: 1, b: 1, a: 1}
   _fadeDuration: 0.05
   _kitchenObjectData: {fileID: 11400000, guid: fc964ebfb7280e8409eebccc1a4dbc8a, type: 2}
-  _kitchenObjectSpawnPoint: {fileID: 7361393866569850628}
+  _kitchenObjectFollowTransform: {fileID: 7361393866569850628}
 --- !u!1001 &8629344908851705071
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IKitchenObjectParent
 {
     private const float EPSILON = 1e-5f;
     private const float PLAYER_HEIGHT = 2f;
@@ -12,6 +12,9 @@ public class Player : MonoBehaviour
     [SerializeField] private float _rotationSpeed = 10f;
     [SerializeField] private LayerMask _counterLayerMask;
 
+    [SerializeField] private Transform _kitchenObjectFollowTransform;
+    private KitchenObject _kitchenObject;
+
     private bool _isWalking;
     private IInteractable _currentInteractable;
 
@@ -22,7 +25,7 @@ public class Player : MonoBehaviour
 
     private void GameInput_OnInteractAction(object sender, System.EventArgs e)
     {
-        _currentInteractable?.Interact();
+        _currentInteractable?.Interact(this);
     }
 
     private void Update()
@@ -35,6 +38,39 @@ public class Player : MonoBehaviour
     {
         _gameInput.OnInteractAction -= GameInput_OnInteractAction;
     }
+
+    // #########################################################################
+    // IKitchenObjectParent Implementation
+    // #########################################################################
+
+    public Transform GetKitchenObjectFollowTransform()
+    {
+        return _kitchenObjectFollowTransform;
+    }
+
+    public void SetKitchenObject(KitchenObject kitchenObject)
+    {
+        _kitchenObject = kitchenObject;
+    }
+
+    public KitchenObject GetKitchenObject()
+    {
+        return _kitchenObject;
+    }
+
+    public void ClearKitchenObject()
+    {
+        _kitchenObject = null;
+    }
+
+    public bool HasKitchenObject()
+    {
+        return _kitchenObject != null;
+    }
+
+    // #########################################################################
+    // Interaction and Movement Handling
+    // #########################################################################
 
     private void HandleInteraction()
     {
