@@ -17,6 +17,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
     private bool _isWalking;
     private IInteractable _currentInteractable;
+    private IEmission _currentEmission;
 
     public void Start()
     {
@@ -77,13 +78,30 @@ public class Player : MonoBehaviour, IKitchenObjectParent
         float interactionDistance = 2f;
         bool hit = Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, interactionDistance, _counterLayerMask);
 
-        IInteractable interactable = hit ? hitInfo.transform.GetComponent<IInteractable>() : null;
+        IInteractable interactable;
+        IEmission emission;
+
+        if (hit)
+        {
+            interactable = hitInfo.transform.GetComponent<IInteractable>();
+            emission = hitInfo.transform.GetComponent<IEmission>();
+        }
+        else
+        {
+            interactable = null;
+            emission = null;
+        }
 
         if (_currentInteractable != interactable)
         {
-            _currentInteractable?.OnLookExit();
             _currentInteractable = interactable;
-            _currentInteractable?.OnLookEnter();
+        }
+
+        if (_currentEmission != emission)
+        {
+            _currentEmission?.OnLookExit();
+            _currentEmission = emission;
+            _currentEmission?.OnLookEnter();
         }
     }
 
